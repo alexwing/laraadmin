@@ -42,9 +42,13 @@ use Dwij\Laraadmin\Models\Module;
 									<label for="url" style="font-weight:normal;">URL</label>
 									<input class="form-control" placeholder="URL" name="url" type="text" value="http://" data-rule-minlength="1" required>
 								</div>
+ 								<div class="form-group">
+									<label for="label" style="font-weight:normal;">Label</label>
+									<input class="form-control" placeholder="Label" name="label" type="text" value=""  data-rule-minlength="1" required>
+								</div>                                          
 								<div class="form-group">
-									<label for="name" style="font-weight:normal;">Label</label>
-									<input class="form-control" placeholder="Label" name="name" type="text" value=""  data-rule-minlength="1" required>
+									<label for="name" style="font-weight:normal;">Name</label>
+									<input class="form-control" placeholder="Name" name="name" type="text" value=""  data-rule-minlength="1" required>
 								</div>
 								<div class="form-group">
 									<label for="icon" style="font-weight:normal;">Icon</label>

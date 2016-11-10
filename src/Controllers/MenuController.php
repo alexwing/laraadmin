@@ -61,9 +61,11 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $name = Input::get('name');
+        $label = Input::get('label');
         $url = Input::get('url');
         $icon = Input::get('icon');
         $type = Input::get('type');
+        $roles = json_encode(Input::get('roles'));
 
         if($type == "module") {
             $module_id = Input::get('module_id');
@@ -72,6 +74,8 @@ class MenuController extends Controller
                 $name = $module->name;
                 $url = $module->name_db;
                 $icon = $module->fa_icon;
+                //$roles =  json_decode($module->roles);
+                $roles =  '["1","2"]';
             } else {
                 return response()->json([
                     "status" => "failure",
@@ -81,9 +85,11 @@ class MenuController extends Controller
         }
         Menu::create([
             "name" => $name,
+            "label" => $label,
             "url" => $url,
             "icon" => $icon,
             "type" => $type,
+            "roles" => $roles,
             "parent" => 0
         ]);
         if($type == "module") {
@@ -123,14 +129,18 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $name = Input::get('name');
+        $label = Input::get('label');
         $url = Input::get('url');
         $icon = Input::get('icon');
         $type = Input::get('type');
+        $roles = json_encode(Input::get('roles'));
 
         $menu = Menu::find($id);
         $menu->name = $name;
+        $menu->label = $label;
         $menu->url = $url;
         $menu->icon = $icon;
+        $menu->roles = $roles;
         $menu->save();
 
         return redirect(config('laraadmin.adminRoute').'/la_menus');

@@ -188,8 +188,8 @@ class Module extends Model
 		} else {
 			$defval = $field->defaultvalue;
 		}
-		// Log::debug('Module:create_field_schema ('.$update.') - '.$field->colname." - ".$field->field_type
-				// ." - ".$defval." - ".$field->maxlength);
+		Log::debug('Module:create_field_schema ('.$update.') - '.$field->colname." - ".$field->field_type
+				." - ".$defval." - ".$field->maxlength);
 		
 		switch ($field->field_type) {
 			case 'Address':
@@ -288,9 +288,9 @@ class Module extends Model
 				if($field->popup_vals == "") {
 					if(is_int($field->defaultvalue)) {
 						if($update) {
-							$var = $table->integer($field->colname)->unsigned()->nullable()->change();
+							$var = $table->integer($field->colname)->unsigned()->change();
 						} else {
-							$var = $table->integer($field->colname)->unsigned()->nullable();
+							$var = $table->integer($field->colname)->unsigned();
 						}
 						$var->default($field->defaultvalue);
 						break;
@@ -308,22 +308,22 @@ class Module extends Model
 				if(starts_with($field->popup_vals, "@")) {
 					$foreign_table_name = str_replace("@", "", $field->popup_vals);
 					if($update) {
-						$var = $table->integer($field->colname)->nullable()->unsigned()->change();
+						$var = $table->integer($field->colname)->unsigned()->change();
 						if($field->defaultvalue == "" || $field->defaultvalue == "0") {
 							$var->default(1);
 						} else {
 							$var->default($field->defaultvalue);
 						}
 						$table->dropForeign($field->module_obj->name_db."_".$field->colname."_foreign");
-						$table->foreign($field->colname)->references('id')->on($foreign_table_name)->onUpdate('cascade')->onDelete('cascade');
+						$table->foreign($field->colname)->references('id')->on($foreign_table_name);
 					} else {
-						$var = $table->integer($field->colname)->nullable()->unsigned();
+						$var = $table->integer($field->colname)->unsigned();
 						if($field->defaultvalue == "" || $field->defaultvalue == "0") {
 							$var->default(1);
 						} else {
 							$var->default($field->defaultvalue);
 						}
-						$table->foreign($field->colname)->references('id')->on($foreign_table_name)->onUpdate('cascade')->onDelete('cascade');
+						$table->foreign($field->colname)->references('id')->on($foreign_table_name);
 					}
 				} else if(is_array($popup_vals)) {
 					if($update) {
@@ -1185,7 +1185,7 @@ class Module extends Model
 		$module = Module::find($module_id);
 		$module = Module::get($module->name);
 		
-		// Log::debug('Module:setDefaultRoleAccess ('.$module_id.', '.$role_id.', '.$access_type.')');
+		Log::debug('Module:setDefaultRoleAccess ('.$module_id.', '.$role_id.', '.$access_type.')');
 		
 		$role = DB::table('roles')->where('id', $role_id)->first();
 		
