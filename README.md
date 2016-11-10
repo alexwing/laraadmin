@@ -1,6 +1,7 @@
 <p align="center">
   <img src="http://laraadmin.com/img/laraadmin-256.png">
-  <h1 align="center" style="margin-top:5px;">LaraAdmin 1.0</h1>
+  <h1 align="center" style="margin-top:5px;">LaraAdmin 1.0 for CV-EDITOR</h1>
+  <p>Changes on LaraAdmin for curriculum editor page</p>
 </p>
 
 [![Total Downloads](https://poser.pugx.org/dwij/laraadmin/d/total.svg)](https://packagist.org/packages/dwij/laraadmin)
