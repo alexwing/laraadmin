@@ -74,8 +74,7 @@ class MenuController extends Controller
                 $name = $module->name;
                 $url = $module->name_db;
                 $icon = $module->fa_icon;
-                //$roles =  json_decode($module->roles);
-                $roles =  '["1","2"]';
+                $roles =  json_decode($module->roles);
             } else {
                 return response()->json([
                     "status" => "failure",
