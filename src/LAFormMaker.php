@@ -44,7 +44,7 @@ class LAFormMaker {
                     $params['class'] = $class;
                }
                if (!isset($params['placeholder'])) {
-                    $params['placeholder'] = 'Enter ' . $label;
+                    $params['placeholder'] = 'Introduzca ' . $label;
                }
                if ($minlength) {
                     $params['data-rule-minlength'] = $minlength;
