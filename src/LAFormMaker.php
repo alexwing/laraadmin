@@ -312,10 +312,11 @@ class LAFormMaker {
                          if (isset($row) && isset($row->$field_name)) {
                               $default_val = $row->$field_name;
                          }
-
+                          $params['class'] = 'summernote';
+                         $out .= Form::textarea($field_name, $default_val, $params);
                          // ############### Remaining
-                         $out .= '<div class="htmlbox" id="htmlbox_' . $field_name . '" contenteditable>' . $default_val . '</div>';
-                         $out .= Form::hidden($field_name, $default_val, $params);
+                        // $out .= '<div class="summernote" id="htmlbox_' . $field_name . '">' . $default_val . '</div>';
+                        // $out .= Form::text($field_name, $default_val, $params);
                          break;
                     case 'Image':
                          $out .= '<label for="' . $field_name . '" style="display:block;">' . $label . $required_ast . ' :</label>';
